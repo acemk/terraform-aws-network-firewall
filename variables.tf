@@ -31,6 +31,18 @@ variable "subnet_mapping" {
   description = "Subnet ids mapping to have individual firewall endpoint"
 }
 
+##Hack workaround to for_each bug
+variable "subnet_mapping1" {
+  description = "Subnet ids mapping to have individual firewall endpoint"
+  default = null
+}
+
+##Hack workaround to for_each bug
+variable "subnet_mapping2" {
+  description = "Subnet ids mapping to have individual firewall endpoint"
+  default = null
+}
+
 variable "vpc_id" {
   description = "VPC ID"
   type        = string

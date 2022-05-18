@@ -166,9 +166,23 @@ resource "aws_networkfirewall_firewall" "main" {
   firewall_policy_arn = aws_networkfirewall_firewall_policy.main.arn
   vpc_id              = var.vpc_id
 
-  for_each = toset(var.subnet_mapping)
+  # Subnets mapping - one of several variations that did not work
+  # dynamic "subnet_mapping" {
+  #   for_each = var.subnet_mapping
+  #   content {
+  #     subnet_id = subnet_mapping.value
+  #   }
+  # }
+
+  ##Hack workaround to for_each bug
   subnet_mapping {
-    subnet_id = each.key
+      subnet_id = var.subnet_mapping
+  }
+  subnet_mapping {
+      subnet_id = var.subnet_mapping1
+  }
+  subnet_mapping {
+      subnet_id = var.subnet_mapping2
   }
 
 
